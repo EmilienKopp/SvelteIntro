@@ -4,8 +4,7 @@
 </script>
 
 <main>
-	<h1>Vite + Svelte</h1>
-	<Counter />
+	<h1>Svelte Intro</h1>
 	<UserInput />
 </main>
 
