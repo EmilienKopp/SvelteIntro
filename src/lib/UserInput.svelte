@@ -3,6 +3,7 @@
     export let placeholder: string = "Enter your message here";
 
     let message: string = "Hello world!";
+    let strLimit: number = 20;
 
     // ⇓ Hands on ⇓
     let dialogsArray: {content: string, response: string} [] = [] //TS
@@ -19,6 +20,9 @@
         });
 
         const data = await response.json();
+
+        if(response.status !== 200) throw new Error(data.message);
+
         
         const dialog = { content: message, response: data.message };
         console.table(dialog);
@@ -31,26 +35,29 @@
     }
 
     // ⇓ Hands on ⇓
+    let promise: Promise<any>; // JS: let promise;
+
     async function handleClick() {
         promise = postMessage();
     }
-    
-    let promise: Promise<any>; // JS: let promise;
     // ⇑ Hands on ⇑
 
 </script>
 
 <fieldset>
     <legend>Send a message</legend>
+
     <input type="text" bind:value={message} placeholder={placeholder} />
     <button on:click={handleClick}>Send</button>
+
     {#await promise}
         <p>Waiting for response...</p>
     {:then res}
         <p>Latest response: {res?.response ?? ''}</p>
     {:catch error}
-        <p style="color: red">{error?.message}</p>
+        <p style="color: red"> {error?.message}</p>
     {/await}
+    
 </fieldset>
 
 <div>
@@ -61,8 +68,9 @@
     {/if}
 
     {#each dialogsArray as dialog} 
-        <p in:slide>Sent: {dialog.content}</p>
-        <p in:slide>Received: {dialog.response}</p>
+    {@const short = dialog.content.length >= strLimit ? dialog.content.slice(0, 10) + '...' : dialog.content}
+        <p>Sent: {short}</p>
+        <p>Received: {dialog.response}</p>
     {/each}
     
     <!-- {#each dialogsArray as {content, response} }
