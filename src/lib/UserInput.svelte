@@ -3,7 +3,6 @@
     export let placeholder: string = "Enter your message here";
 
     let message: string = "Hello world!";
-    let apiResponse: string = "";
 
     // ⇓ Hands on ⇓
     let dialogsArray: {content: string, response: string} [] = [] //TS
@@ -31,12 +30,13 @@
         return dialog;
     }
 
+    // ⇓ Hands on ⇓
     async function handleClick() {
         promise = postMessage();
     }
     
-    let promise: Promise<any>;
-    // JS: let promise;
+    let promise: Promise<any>; // JS: let promise;
+    // ⇑ Hands on ⇑
 
 </script>
 
