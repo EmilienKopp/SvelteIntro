@@ -63,11 +63,12 @@
 
 <div class="container">
     
-
     <!-- Use an #each loop to show everything in the message array -->
     <!-- BONUS: use a {@const } block to handle long strings (using the strLimit variable) -->
-    <p>Sent: {apiResponse?.content ?? ""}</p>
-    <p>Received: {apiResponse?.response ?? ""}</p>
+    <div class="message">
+        <p>Sent: {apiResponse?.content ?? ""}</p>
+        <p>Received: {apiResponse?.response ?? ""}</p>
+    </div>
     
     <!-- {#each dialogsArray as {content, response} }
         {@const short = content.length >= strLimit ? content.slice(0, 10) + '...' : content}
@@ -93,6 +94,12 @@
         border: 1px dashed #ccc;
         border-radius: 5px;
         margin-top: 1rem;
+        display: flex;
         flex-direction: column-reverse;
     }
+
+    div.message {
+        border-bottom: #ccc 1px dashed;
+    }
+
 </style>
