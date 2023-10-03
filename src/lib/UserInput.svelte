@@ -18,7 +18,7 @@
     // ⇑ Hands on ⇑
 
     async function postMessage() {
-        const response = await fetch('https://one-in-emilien.com/API/mock', {
+        const response = await fetch('http://one-in-emilien.com/API/mock', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

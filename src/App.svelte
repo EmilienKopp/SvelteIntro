@@ -1,11 +1,17 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
 	import UserInput from "./lib/UserInput.svelte";
+
+	// handson: display the placeholder from UserInput component
+	let placeholder
 </script>
 
 <main>
 	<h1>Svelte Intro</h1>
-	<UserInput />
+	<!-- handson: display the placeholder -->
+	{placeholder}
+	<!-- /handson -->
+	<UserInput bind:placeholder />
 </main>
 
 <style>
