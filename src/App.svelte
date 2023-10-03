@@ -1,11 +1,18 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
 	import UserInput from "./lib/UserInput.svelte";
+
+	let messagesCount: number = 0;
 </script>
 
 <main>
 	<h1>Vite + Svelte</h1>
-	<UserInput />
+	<!-- EXTRA handson: messages count -->
+	{#if messagesCount > 0}
+		{messagesCount} messages 
+	{/if}
+	<!-- /EXTRA handson -->
+	<UserInput bind:messagesCount />
 </main>
 
 <style>

@@ -1,6 +1,7 @@
 <script lang="ts">
     import { fly, slide } from "svelte/transition";
     export let placeholder: string = "Enter your message here";
+    export let messagesCount: number = 0;
 
     let message: string = "Hello world!";
     let strLimit: number = 20;
@@ -42,6 +43,9 @@
     }
     // ⇑ Hands on ⇑
 
+
+    // EXTRA hands-on: use $: reactive statement to update a 'Messages Count' variable
+    $: messagesCount = dialogsArray.length;
 </script>
 
 <fieldset>
