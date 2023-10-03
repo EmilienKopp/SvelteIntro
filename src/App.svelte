@@ -2,16 +2,20 @@
     import Counter from "./lib/Counter.svelte";
 	import UserInput from "./lib/UserInput.svelte";
 
-	// handson: display the placeholder from UserInput component
-	let placeholder
+	// ⇓ Hands on ⇓ 
+        // Declare a variable to hold messages count
+    // ⇑ Hands on ⇑
 </script>
 
 <main>
 	<h1>Svelte Intro</h1>
-	<!-- handson: display the placeholder -->
-	{placeholder}
-	<!-- /handson -->
-	<UserInput bind:placeholder />
+	<!-- ⇓ Hands on ⇓ -->
+		<!-- Display the messages count if it is greater than zero -->
+
+	<!-- ⇑ Hands on ⇑ -->
+
+	<!-- ⇓ Hands on : add a 'bind' to read the message count -->
+	<UserInput />
 </main>
 
 <style>

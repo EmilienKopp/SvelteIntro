@@ -36,14 +36,14 @@
 
         console.table(dialog);
 
-        // ⇓ Hands on ⇓
-            // push into the array... CAREFUL! You can't mutate the array responsively.
+        // ⇓ Hands on ⇓ B
+            // push into the array...  ⚠️ CAREFUL! You can't **mutate** the array responsively.
         // ⇑ Hands on ⇑
 
         return dialog;
     }
 
-    // ⇓ Hands on ⇓
+    // ⇓ Hands on ⇓ C
         // Declare a promise to store the response of the postMessage function
         
         // Declare a function to handle the click event on the button 
@@ -58,7 +58,7 @@
     <legend>Send a message</legend>
 
     <input type="text" bind:value={message} placeholder={placeholder} />
-    <!-- Change the on:click handler -->
+    <!-- ⚠️ Change the on:click handler -->
     <button on:click={postMessage}>Send</button> 
 
     <!-- use an {#await ... then ... catch ... } block to handle the promise -->
@@ -66,7 +66,7 @@
 </fieldset>
 
 
-<!-- Use an {#if } block to change the <h2> title -->
+<!-- Use an {#if } block to change the <h2> title if there are no messages -->
 <h2>Messages</h2>
 
 <div class="container">
