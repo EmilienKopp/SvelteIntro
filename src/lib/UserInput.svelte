@@ -51,6 +51,7 @@
 
     // ⇑ Hands on ⇑
 
+    // EXTRA hands-on: use $: reactive statement to update a 'Messages Count' variable
 </script>
 
 <fieldset>
