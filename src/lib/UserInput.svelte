@@ -1,12 +1,19 @@
 <script lang="ts">
+    //<script>
+    //@ts-nocheck
+
     import { fly, slide } from "svelte/transition";
     export let placeholder: string = "Enter your message here";
 
     let message: string = "Hello world!";
     let apiResponse: any;
     let strLimit: number = 20;
+    // JS ：
+    // let message = "Hello world!";
+    // let apiResponse;
+    // let strLimit = 20;
 
-    // ⇓ Hands on ⇓
+    // ⇓ Hands on ⇓ A
         // Declare an array to store the messages sent and received
     // ⇑ Hands on ⇑
 
