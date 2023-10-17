@@ -26,19 +26,64 @@
 </main>
 
 <style>
-	.logo {
-		height: 6em;
-		padding: 1.5em;
-		will-change: filter;
-		transition: filter 300ms;
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
 	}
-	.logo:hover {
-		filter: drop-shadow(0 0 2em #646cffaa);
+
+	body {
+		font-family: "Poppins", sans-serif;
+		background-color: #fca044;
+		line-height: 1.6;
+		color: #fff;
 	}
-	.logo.svelte:hover {
-		filter: drop-shadow(0 0 2em #ff3e00aa);
+
+	h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 20px;
+		text-align: center;
 	}
-	.read-the-docs {
-		color: #888;
+
+	h2 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	p {
+		font-size: 1.2rem;
+		font-weight: 400;
+		margin-bottom: 20px;
+		text-align: center;
+		padding-top: 10px;
+	}
+
+	.button-container {
+		display: flex;
+		justify-content: center;
+	}
+
+	.button-container button {
+		margin: 0 3px;
+		font-size: 1.5rem;
+		font-weight: 600;
+		padding: 5px 10px;
+		border-radius: 15px;
+		border: fff;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	.container {
+		max-width: 768px;
+		margin: 100px auto;
+		padding: 0 20px;
 	}
 </style>
