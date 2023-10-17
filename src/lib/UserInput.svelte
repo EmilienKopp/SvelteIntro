@@ -1,14 +1,18 @@
 <script lang="ts">
-    import { fly, slide } from "svelte/transition";
-    import { count } from './stores';
+    // import the store
 
     export let placeholder: string = "Enter your message here";
     export let messagesCount: number = 0;
+    //export let placeholder = "Enter your message here";
+    //export let messagesCount = 0;
 
     let message: string = "Hello world!";
     let strLimit: number = 20;
+    //let message = "Hello world!";
+    //let strLimit = 20;
 
-    let dialogsArray: {content: string, response: string} [] = [] //TS
+    let dialogsArray: {content: string, response: string} [] = []
+    //let dialogsArray = []
 
 
     async function postMessage() {
@@ -28,20 +32,18 @@
         console.table(dialog);
         
         dialogsArray = [...dialogsArray, dialog]
-        $count = dialogsArray.length;
+        // Hands-on: update the store's value here
 
         return dialog;
     }
 
-    let promise: Promise<any>; // JS: let promise;
+    let promise: Promise<any>;
+    //let promise;
 
     async function handleClick() {
         promise = postMessage();
     }
 
-
-    // Hands-on: use $: reactive statement to update a 'Messages Count' variable
-    $: messagesCount = dialogsArray.length;
 </script>
 
 <fieldset>

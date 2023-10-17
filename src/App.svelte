@@ -1,13 +1,9 @@
 <script lang="ts">
-    import Counter from "./lib/Counter.svelte";
-    import Test from "./lib/Test.svelte";
 	import UserInput from "./lib/UserInput.svelte";
-	import { messageCount } from "./lib/stores";
+	// import the store
 
-	// ⇓ Hands on ⇓ 
-        // Declare a variable to hold messages count
-		let count: number = 0;
-    // ⇑ Hands on ⇑
+	let messagesCount: number = 0;
+
 </script>
 
 <main>
