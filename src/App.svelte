@@ -1,13 +1,18 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
+    import StatusDisplay from "./lib/StatusDisplay.svelte";
+    import StatusInput from "./lib/StatusInput.svelte";
 	import UserInput from "./lib/UserInput.svelte";
 
 	let messagesCount: number = 0;
+
+	let status: string;
 </script>
 
+<StatusDisplay status={status} />
 <main>
 	<h1>SvelChat</h1>
-
+	<StatusInput bind:status={status} />
 	<!-- Hands-on: replace with a Store  -->
 	{#if messagesCount > 0}
 		You have {messagesCount} messages 
