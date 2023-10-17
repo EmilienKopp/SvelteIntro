@@ -5,15 +5,22 @@
 	import UserInput from "./lib/UserInput.svelte";
 	// import the store
 
+	
+	// the 'state' of the app is kept here -> not very easy to share
 	let messagesCount: number = 0;
-
 	let status: string;
+	
+
 </script>
 
+
 <StatusDisplay status={status} />
+
 <main>
 	<h1>SvelChat</h1>
+
 	<StatusInput bind:status={status} />
+	
 	<!-- Hands-on: replace with a Store  -->
 	{#if messagesCount > 0}
 		You have {messagesCount} messages 
