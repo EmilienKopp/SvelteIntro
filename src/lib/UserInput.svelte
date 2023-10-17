@@ -1,12 +1,12 @@
 <script lang="ts">
     import { fly, slide } from "svelte/transition";
-    import { count } from './stores';
+    import { count, messages } from './stores';
 
     export let placeholder: string = "Enter your message here";
     export let messagesCount: number = 0;
 
     let message: string = "Hello world!";
-    let strLimit: number = 20;
+    
 
     let dialogsArray: {content: string, response: string} [] = [] //TS
 
@@ -27,8 +27,8 @@
         const dialog = { content: message, response: data.message };
         console.table(dialog);
         
-        dialogsArray = [...dialogsArray, dialog]
-        $count = dialogsArray.length;
+        $messages = [...$messages, dialog]
+        $count = $messages.length;
 
         return dialog;
     }
@@ -41,8 +41,10 @@
 
 
     // Hands-on: use $: reactive statement to update a 'Messages Count' variable
-    $: messagesCount = dialogsArray.length;
+    $: messagesCount = $messages.length;
 </script>
+
+
 
 <fieldset>
     <legend>Send a message</legend>
@@ -60,7 +62,10 @@
     
 </fieldset>
 
-{#if dialogsArray.length}
+<!-- SPLIT HERE -->
+<!--  ⇓　Take this into a new component ⇓ -->
+
+<!-- {#if dialogsArray.length}
     <h2> {messagesCount} Messages</h2>
 {:else}
     <p>No messages yet</p>
@@ -77,7 +82,7 @@
     </div>
     {/each}
    
-</div>
+</div> -->
 
 <style>
     fieldset {
