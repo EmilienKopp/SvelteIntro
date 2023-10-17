@@ -3,30 +3,26 @@
     import StatusDisplay from "./lib/StatusDisplay.svelte";
     import StatusInput from "./lib/StatusInput.svelte";
 	import UserInput from "./lib/UserInput.svelte";
-	// import the store
-
-	
-	// the 'state' of the app is kept here -> not very easy to share
-	let messagesCount: number = 0;
-	let status: string;
-	
-
+	import DisplayMessages from "./lib/DisplayMessages.svelte";
+	import { count } from './lib/stores';
 </script>
 
 
-<StatusDisplay status={status} />
+<StatusDisplay />
 
 <main>
 	<h1>SvelChat</h1>
 
-	<StatusInput bind:status={status} />
+	<StatusInput />
 	
 	<!-- Hands-on: replace with a Store  -->
-	{#if messagesCount > 0}
-		You have {messagesCount} messages 
+	{#if $count > 0}
+		You have {$count} messages 
 	{/if}
 	<!-- Hands-on: replace with a Store  -->
-	<UserInput bind:messagesCount />
+	<UserInput />
+
+	<DisplayMessages />
 </main>
 
 <style>

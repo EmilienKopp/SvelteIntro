@@ -1,19 +1,17 @@
 <script lang="ts">
+    //@ts-nocheck
     // import the store
+    import { count } from './stores';
+    import { messages } from './stores';
 
-    export let placeholder: string = "Enter your message here";
-    export let messagesCount: number = 0;
+    export let placeholder = "Enter your message here";
     //export let placeholder = "Enter your message here";
     //export let messagesCount = 0;
 
-    let message: string = "Hello world!";
-    let strLimit: number = 20;
+    let message = "Hello world!";
+    
     //let message = "Hello world!";
     //let strLimit = 20;
-
-    let dialogsArray: {content: string, response: string} [] = []
-    //let dialogsArray = []
-
 
     async function postMessage() {
         const response = await fetch('https://one-in-emilien.com/API/mock', {
@@ -31,8 +29,9 @@
         const dialog = { content: message, response: data.message };
         console.table(dialog);
         
-        dialogsArray = [...dialogsArray, dialog]
+        $messages = [...$messages, dialog]
         // Hands-on: update the store's value here
+        $count = $messages.length;
 
         return dialog;
     }
@@ -62,24 +61,7 @@
     
 </fieldset>
 
-{#if dialogsArray.length}
-    <h2> {messagesCount} Messages</h2>
-{:else}
-    <p>No messages yet</p>
-{/if}
 
-<div class="container">
-    
-
-    {#each dialogsArray as dialog} 
-    {@const short = dialog.content.length >= strLimit ? dialog.content.slice(0, 10) + '...' : dialog.content}
-    <div class="message">
-        <p>Sent: {short}</p>
-        <p>Received: {dialog.response}</p>
-    </div>
-    {/each}
-   
-</div>
 
 <style>
     fieldset {
@@ -92,17 +74,6 @@
         text-align: left;
     }
 
-    div.container {
-        padding: 2rem;
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    div.message {
-        border-bottom: #ccc 1px dashed;
-    }
+    
 
 </style>

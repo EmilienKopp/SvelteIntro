@@ -1,17 +1,13 @@
 <script lang="ts">
-    // import { status } from './stores';
-
-    export let status: string = 'offline'
+    import { status } from './stores';
 
 </script>
 
 
 <nav>
-    Welcome! You are now <span class="{status}">{status}</span>.
-</nav>
-<!-- <nav>
     Welcome! You are now <span class="{$status}">{$status}</span>.
-</nav> -->
+</nav>
+
 
 <style>
     span.online {
