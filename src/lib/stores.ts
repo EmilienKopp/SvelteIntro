@@ -1,1 +1,5 @@
-// Create a `count` store that starts at 0
+import { writable } from 'svelte/store';
+
+export const count = writable(0);
+
+export const status = writable('offline');
