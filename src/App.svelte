@@ -6,12 +6,13 @@
 </script>
 
 <main>
-	<h1>Vite + Svelte</h1>
-	<!-- EXTRA handson: messages count -->
+	<h1>SvelChat</h1>
+
+	<!-- Hands-on: replace with a Store  -->
 	{#if messagesCount > 0}
-		{messagesCount} messages 
+		You have {messagesCount} messages 
 	{/if}
-	<!-- /EXTRA handson -->
+	<!-- Hands-on: replace with a Store  -->
 	<UserInput bind:messagesCount />
 </main>
 

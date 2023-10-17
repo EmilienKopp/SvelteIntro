@@ -1,15 +1,15 @@
 <script lang="ts">
     import { fly, slide } from "svelte/transition";
+    import { count } from './stores';
+
     export let placeholder: string = "Enter your message here";
     export let messagesCount: number = 0;
 
     let message: string = "Hello world!";
     let strLimit: number = 20;
 
-    // ⇓ Hands on ⇓
     let dialogsArray: {content: string, response: string} [] = [] //TS
-    let dialogsArrayJS = []; //JS
-    // ⇑ Hands on ⇑
+
 
     async function postMessage() {
         const response = await fetch('https://one-in-emilien.com/API/mock', {
@@ -24,27 +24,23 @@
 
         if(response.status !== 200) throw new Error(data.message);
 
-        
         const dialog = { content: message, response: data.message };
         console.table(dialog);
-        // ⇓ Hands on ⇓
-        dialogsArray = [...dialogsArray, dialog] //TS
-        dialogsArrayJS = [...dialogsArrayJS, dialog] //JS
-        // ⇑ Hands on ⇑
+        
+        dialogsArray = [...dialogsArray, dialog]
+        $count = dialogsArray.length;
 
         return dialog;
     }
 
-    // ⇓ Hands on ⇓
     let promise: Promise<any>; // JS: let promise;
 
     async function handleClick() {
         promise = postMessage();
     }
-    // ⇑ Hands on ⇑
 
 
-    // EXTRA hands-on: use $: reactive statement to update a 'Messages Count' variable
+    // Hands-on: use $: reactive statement to update a 'Messages Count' variable
     $: messagesCount = dialogsArray.length;
 </script>
 
@@ -65,7 +61,7 @@
 </fieldset>
 
 {#if dialogsArray.length}
-    <h2>Messages</h2>
+    <h2> {messagesCount} Messages</h2>
 {:else}
     <p>No messages yet</p>
 {/if}
@@ -80,11 +76,6 @@
         <p>Received: {dialog.response}</p>
     </div>
     {/each}
-    
-    <!-- {#each dialogsArray as {content, response} }
-        <p>Sent: {content}</p>
-        <p>Received: {response}</p>
-    {/each} -->
    
 </div>
 
