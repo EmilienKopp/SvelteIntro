@@ -1,9 +1,12 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
+    import Test from "./lib/Test.svelte";
 	import UserInput from "./lib/UserInput.svelte";
+	import { messageCount } from "./lib/stores";
 
 	// ⇓ Hands on ⇓ 
         // Declare a variable to hold messages count
+		let count: number = 0;
     // ⇑ Hands on ⇑
 </script>
 
@@ -15,7 +18,8 @@
 	<!-- ⇑ Hands on ⇑ -->
 
 	<!-- ⇓ Hands on : add a 'bind' to read the message count -->
-	<UserInput />
+	<UserInput bind:count />
+	<Test/>
 </main>
 
 <style>
