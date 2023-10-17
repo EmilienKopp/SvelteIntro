@@ -1,5 +1,6 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
+    import MessageDisplay from "./lib/MessageDisplay.svelte";
     import StatusDisplay from "./lib/StatusDisplay.svelte";
     import StatusInput from "./lib/StatusInput.svelte";
 	import UserInput from "./lib/UserInput.svelte";
@@ -13,12 +14,15 @@
 <main>
 	<h1>SvelChat</h1>
 	<StatusInput bind:status={status} />
+	<hr/>
 	<!-- Hands-on: replace with a Store  -->
 	{#if messagesCount > 0}
 		You have {messagesCount} messages 
 	{/if}
 	<!-- Hands-on: replace with a Store  -->
 	<UserInput bind:messagesCount />
+	<hr/>
+	<MessageDisplay />
 </main>
 
 <style>

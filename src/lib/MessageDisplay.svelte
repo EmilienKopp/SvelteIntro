@@ -23,3 +23,18 @@
     {/each}
    
 </div>
+
+<style>
+    div.container {
+        padding: 2rem;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    div.message {
+        border-bottom: #ccc 1px dashed;
+    }
+</style>
