@@ -11,15 +11,14 @@
 </script>
 
 <main>
-	<h1>Svelte Intro</h1>
-	<!-- ⇓ Hands on ⇓ -->
-		<!-- Display the messages count if it is greater than zero -->
+	<h1>SvelChat</h1>
 
-	<!-- ⇑ Hands on ⇑ -->
-
-	<!-- ⇓ Hands on : add a 'bind' to read the message count -->
-	<UserInput bind:count />
-	<Test/>
+	<!-- Hands-on: replace with a Store  -->
+	{#if messagesCount > 0}
+		You have {messagesCount} messages 
+	{/if}
+	<!-- Hands-on: replace with a Store  -->
+	<UserInput bind:messagesCount />
 </main>
 
 <style>

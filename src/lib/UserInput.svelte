@@ -1,25 +1,15 @@
 <script lang="ts">
-    //<script>
-    //@ts-nocheck
-
     import { fly, slide } from "svelte/transition";
-    import { messageCount } from "./stores";
+    import { count } from './stores';
 
     export let placeholder: string = "Enter your message here";
-    export let count: number = 0;
+    export let messagesCount: number = 0;
 
     let message: string = "Hello world!";
-    let apiResponse: any;
     let strLimit: number = 20;
-    // JS ：
-    // let message = "Hello world!";
-    // let apiResponse;
-    // let strLimit = 20;
 
-    // ⇓ Hands on ⇓ A
-        // Declare an array to store the messages sent and received
-    let dialogsArray: any[] = [];
-    // ⇑ Hands on ⇑
+    let dialogsArray: {content: string, response: string} [] = [] //TS
+
 
     async function postMessage() {
         const response = await fetch('https://one-in-emilien.com/API/mock', {
@@ -34,73 +24,58 @@
 
         if(response.status !== 200) throw new Error(data.message);
 
-        
         const dialog = { content: message, response: data.message };
-        apiResponse = dialog;
-
         console.table(dialog);
-
-        // ⇓ Hands on ⇓ B
-            // push into the array...  ⚠️ CAREFUL! You can't **mutate** the array responsively.
-        dialogsArray = [...dialogsArray, dialog];
-        $messageCount = dialogsArray.length;
-        // ⇑ Hands on ⇑
+        
+        dialogsArray = [...dialogsArray, dialog]
+        $count = dialogsArray.length;
 
         return dialog;
     }
 
-    // ⇓ Hands on ⇓ C
-        // Declare a promise to store the response of the postMessage function
-        let promise: Promise<any>;
-        // Declare a function to handle the click event on the button 
-        // and assign the result of the postMessage function to the promise
-        function handleClick() {
-            promise = postMessage();
-        }
-    // ⇑ Hands on ⇑
+    let promise: Promise<any>; // JS: let promise;
 
-    // EXTRA hands-on: use $: reactive statement to update a 'Messages Count' variable
+    async function handleClick() {
+        promise = postMessage();
+    }
+
+
+    // Hands-on: use $: reactive statement to update a 'Messages Count' variable
+    $: messagesCount = dialogsArray.length;
 </script>
 
 <fieldset>
     <legend>Send a message</legend>
 
     <input type="text" bind:value={message} placeholder={placeholder} />
-    <!-- ⚠️ Change the on:click handler -->
-    <button on:click={handleClick}>Send</button> 
+    <button on:click={handleClick}>Send</button>
 
-    <!-- use an {#await ... then ... catch ... } block to handle the promise -->
     {#await promise}
-        <p>Waiting for the response...</p>
-    {:then dialog}
-        <p>Response: {dialog?.response ?? ""}</p>
+        <p>Waiting for response...</p>
+    {:then res}
+        <p>Latest response: {res?.response ?? ''}</p>
     {:catch error}
-        <p style="color: red;">{error.message}</p>
+        <p style="color: red"> {error?.message}</p>
     {/await}
+    
 </fieldset>
 
-
-<!-- Use an {#if } block to change the <h2> title if there are no messages -->
-{#if dialogsArray.length === 0}
-    <h2>No messages</h2>
+{#if dialogsArray.length}
+    <h2> {messagesCount} Messages</h2>
 {:else}
-    <h2> { dialogsArray.length } Messages</h2>
+    <p>No messages yet</p>
 {/if}
-
 
 <div class="container">
     
-    <!-- Use an #each loop to show everything in the message array -->
-    <!-- BONUS: use a {@const } block to handle long strings (using the strLimit variable) -->
-    
-    <!-- dialog : { content: string, response: string} -->
-    {#each dialogsArray as {content, response} }
-        <div class="message">
-            <p>{content}</p>
-            <p>{response}</p>
-        </div>
-    {/each}
 
+    {#each dialogsArray as dialog} 
+    {@const short = dialog.content.length >= strLimit ? dialog.content.slice(0, 10) + '...' : dialog.content}
+    <div class="message">
+        <p>Sent: {short}</p>
+        <p>Received: {dialog.response}</p>
+    </div>
+    {/each}
    
 </div>
 

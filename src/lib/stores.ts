@@ -1,3 +1,3 @@
-import { writable, type Writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-export const messageCount = writable(0);
+export const count = writable(0);
