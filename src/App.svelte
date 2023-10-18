@@ -1,7 +1,7 @@
 <script>
 	//@ts-nocheck
 	import UserInput from "./lib/UserInput.svelte";
-
+	import "./app.css";
 	let message = '';
 	let numbersArray = [];
 	
@@ -21,7 +21,7 @@
 
 <h1>Welcome to Mental Check-in</h1>
 
-<h2>How are you feeling?</h2>
+<h2 class="text-red-500">How are you feeling?</h2>
 
 <div class="button-container">
 	{#each numbersArray as number}
