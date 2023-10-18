@@ -13,8 +13,8 @@
 		if (n <= 5) {
 			message = "You are not so great, care to chat about it?";
 		} else {
-			message = "You are doing great, keep it up";
-		}
+			message = "You are doing great, keep it up!";
+		}  
 	}
 </script>
 
