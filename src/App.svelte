@@ -4,18 +4,29 @@
 	import "./app.css";
 	let message = '';
 	let numbersArray = [];
+	let quotes = [];
+
+	fetch("https://type.fit/api/quotes")
+		.then((response) => response.json())
+		.then((data) => {
+			quotes = data;
+		});
+	
+	function updateMessage(quote) {
+		message = quotes[Math.floor(Math.random() * quotes.length)].text;
+	}
 	
 	for(let i = 1; i <= 10 ; i++) {
 		numbersArray.push(i);
 	}
 
-	function updateMessage(n) {
-		if (n <= 5) {
-			message = "You are not so great, care to chat about it?";
-		} else {
-			message = "You are doing great, keep it up!";
-		}  
-	}
+	// function updateMessage(n) {
+	// 	if (n <= 5) {
+	// 		message = "You are not so great, care to chat about it?";
+	// 	} else {
+	// 		message = "You are doing great, keep it up!";
+	// 	}  
+	// }
 </script>
 
 
@@ -23,20 +34,28 @@
 
 <h2>How are you feeling?</h2>
 <div class="button-container">
-	{#each numbersArray as number}
-		<button on:click={ () => updateMessage(number) } > 
-			{number} 
-		</button>
-	{/each}
+	<button on:click={updateMessage}>1</button>
+	<button on:click={updateMessage}>2</button>
+	<button on:click={updateMessage}>3</button>
+	<button on:click={updateMessage}>4</button>
+	<button on:click={updateMessage}>5</button>
+	<button on:click={updateMessage}>6</button>
+	<button on:click={updateMessage}>7</button>
+	<button on:click={updateMessage}>8</button>
+	<button on:click={updateMessage}>9</button>
+	<button on:click={updateMessage}>10</button>
+
 </div>
 <p class="feedback-message">
 	{message}
 </p>
+<textarea name="user diary" id="user diary" cols="30" rows="7" placeholder="Write how you feel"></textarea>
 
-<p>Feeling suicidal? <button>Talk to us</button></p>
+<p>Feeling suicidal?   Call us: <button>03-5774-0992</button></p>
 <div>
+	<p>Or</p>
 	<a href="mailto:dfbusinessjp@gmail.com">Email us</a>
-	<a href="tel:+817090341407">Call us</a>
+	<p class="text-red-500">AI Live Chat Feature Coming Soon!</p>
 </div>
 
 <style>
@@ -89,10 +108,10 @@
 		border: fff; */
 	}
 
-	/* .button-container button:hover
+	.button-container button:hover
 		 {
 		@apply bg-white text-red-500;
-	} */
+	}
 
 	ul {
 		list-style: none;
