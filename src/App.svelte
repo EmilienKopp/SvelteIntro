@@ -21,8 +21,7 @@
 
 <h1>Welcome to Mental Check-in</h1>
 
-<h2 class="text-red-500">How are you feeling?</h2>
-
+<h2>How are you feeling?</h2>
 <div class="button-container">
 	{#each numbersArray as number}
 		<button on:click={ () => updateMessage(number) } > 
@@ -57,18 +56,15 @@
 	}
 
 	h1 {
-		font-size: 2.5rem;
+		font-size: 4.5rem;
 		font-weight: 700;
 		margin-bottom: 20px;
 		text-align: center;
 	}
 
-	h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 20px;
-		text-align: center;
-	}
+	 h2 {
+		@apply text-red-500 text-3xl;
+	} 
 
 	p {
 		font-size: 1.2rem;
@@ -84,13 +80,19 @@
 	}
 
 	.button-container button {
-		margin: 0 3px;
+		@apply mx-1 my-3 font-bold py-2 px-4 rounded-xl border border-white;
+		/* margin: 0 3px;
 		font-size: 1.5rem;
 		font-weight: 600;
 		padding: 5px 10px;
 		border-radius: 15px;
-		border: fff;
+		border: fff; */
 	}
+
+	/* .button-container button:hover
+		 {
+		@apply bg-white text-red-500;
+	} */
 
 	ul {
 		list-style: none;
