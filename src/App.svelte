@@ -1,23 +1,35 @@
 <script>
 	//@ts-nocheck
 	import UserInput from "./lib/UserInput.svelte";
+	import { createClient } from "@supabase/supabase-js";
 	import "./app.css";
+	let username = '';
 	let message = '';
 	let numbersArray = [];
 	let quotes = [];
+
+	const supabase = createClient('https://adhsmirgkvdehvkhokyv.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFkaHNtaXJna3ZkZWh2a2hva3l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODI5MzczOTQsImV4cCI6MTk5ODUxMzM5NH0.wl-G43DnNWTxM2BFtbFDzq31YWLejcCPSkK7oQ6DjRw')
 
 	fetch("https://type.fit/api/quotes")
 		.then((response) => response.json())
 		.then((data) => {
 			quotes = data;
+			console.log(quotes);
 		});
 	
-	function updateMessage(quote) {
+	function updateMessage() {
 		message = quotes[Math.floor(Math.random() * quotes.length)].text;
 	}
 	
 	for(let i = 1; i <= 10 ; i++) {
 		numbersArray.push(i);
+	}
+
+	async function postMessage() {
+		const { data, error } = await supabase
+			.from("mental_diary")
+			.insert({username: username, message: message}).select();
+		console.log(data,error);
 	}
 
 	// function updateMessage(n) {
@@ -32,24 +44,18 @@
 
 <h1>Welcome to Mental Check-in</h1>
 
-<h2>How are you feeling?</h2>
+<h2>How are you feeling ?</h2>
 <div class="button-container">
-	<button on:click={updateMessage}>1</button>
-	<button on:click={updateMessage}>2</button>
-	<button on:click={updateMessage}>3</button>
-	<button on:click={updateMessage}>4</button>
-	<button on:click={updateMessage}>5</button>
-	<button on:click={updateMessage}>6</button>
-	<button on:click={updateMessage}>7</button>
-	<button on:click={updateMessage}>8</button>
-	<button on:click={updateMessage}>9</button>
-	<button on:click={updateMessage}>10</button>
-
+	{#each numbersArray as number}
+	<button on:click={updateMessage}>{number}</button>
+	{/each}
 </div>
 <p class="feedback-message">
+	<input type="text" placeholder="Enter your name" bind:value={username} />
 	{message}
 </p>
 <textarea name="user diary" id="user diary" cols="30" rows="7" placeholder="Write how you feel"></textarea>
+<button on:click={postMessage}>Post</button>
 
 <p>Feeling suicidal?   Call us: <button>03-5774-0992</button></p>
 <div>
