@@ -3,11 +3,11 @@
     import { messages, messagesCSS, count } from './stores';
     let strLimit: number = 20;
 
-    $: console.log($messagesCSS);
+    // HANDSON TASK 1: 'messageBox' にOptionsで定義したCSSを適用する
 </script>
 
 
-<div style="{$messagesCSS}" class="messageBox">   
+<div class="messageBox">   
 
     {#each $messages as dialog} 
     {@const short = dialog.content.length >= strLimit ? dialog.content.slice(0, 10) + '...' : dialog.content}
@@ -21,12 +21,16 @@
 </div>
 
 <style>
-    .messageBox {
-        background-color: var(--background);
-        font-size: var(--size);
-        font-family: var(--font);
-        color: var(--color);
-        padding-top: var(--pt);
-        padding-bottom: var(--pb);
+    div.messageBox {
+        padding: 2rem;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    div.messageBox > div:not(:first-child) {
+        border-bottom: #ccc 1px dashed;
     }
 </style>

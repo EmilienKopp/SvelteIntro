@@ -19,75 +19,77 @@
         }
     }
 
-    $: cssOptions = `
+    $: cssStyleString = `
         --background: ${userOptions.backgroundColor};
         --color: ${userOptions.color};
         --size: ${userOptions.fontSize}px;
         --font: ${userOptions.fontFamily};
         --pt: ${userOptions.padding.top}rem;
-    `;
-    $: $messagesCSS = cssOptions;
+        --pb: ${userOptions.padding.bottom}rem;
+        `;
+    // storeを使ってMessageDisplayでも反映されるようにする
 </script>
 
 <div>
 
     <fieldset>
         <legend>Options</legend>
-        
+        <!-- HANDSON TASK 1: `bind:`でcssOptionsとつなげ直す  -->
         <label>
             Background Color:
-            <input type="color" bind:value={userOptions.backgroundColor} />
+            <input type="color" />
         </label>
         <label>
             Text Color:
-            <input type="color" bind:value={userOptions.color} />
+            <input type="color" />
         </label>
         <label>
             Font Size: {userOptions.fontSize} px
-            <input type="range" step=1 min=16 max=28 bind:value={userOptions.fontSize} />
+            <input type="range" step=1 min=16 max=28  />
         </label>
         <label>
             Hide Preview: 
-            <input type="checkbox" bind:checked={hiddenChecked} />
+            <input type="checkbox" />
         </label>
         <label>
             Content: 
-            <input type="text" bind:value={content} />
+            <input type="text" />
         </label>
         <div style="display:flex; flex-direction: column; align-items: flex-start;">
             <label>
                 Padding Top: {userOptions.padding.top} rem
-                <input type="range" step=1 min=0 max=5 bind:value={userOptions.padding.top} />
+                <input type="range" step=1 min=0 max=5  />
             </label>
             <label>
                 Padding Bottom: {userOptions.padding.bottom} rem
-                <input type="range" step=1 min=0 max=5 bind:value={userOptions.padding.bottom} />
+                <input type="range" step=1 min=0 max=5  />
             </label>
         </div>
         <div style="display:flex; flex-direction: column; align-items: flex-start;">
             <label for="fontArial">Arial
                 <input id="fontArial" type="radio" name="fontInput" value="Arial" 
-                        bind:group={userOptions.fontFamily}/>
+                        />
             </label>
             <label for="fontTimes">Times New Roman
                 <input id="fontTimes" type="radio" name="fontInput" value="Times New Roman" 
-                        bind:group={userOptions.fontFamily}/>
+                        />
             </label>
             <label for="fontCourier">Courier New
                 <input id="fontCourier" type="radio" name="fontInput" value="Courier New" 
-                        bind:group={userOptions.fontFamily}/>
+                        />
             </label>
             <label for="comicSans">Comic Sans MS
                 <input id="comicSans" type="radio" name="fontInput" value="Comic Sans MS" 
-                        bind:group={userOptions.fontFamily}/>
+                        />
             </label>
         </div>
     </fieldset>
 
+    <!-- HANDSON　TASK １: スタイルをつなげ直す -->
     <div id="preview" 
         class:hidden={hiddenChecked} 
-        class="{hiddenChecked ? 'hidden' : ''}" 
-        style="--background:{userOptions.backgroundColor};--pt:{userOptions.padding.top}rem;--pb:{userOptions.padding.bottom}rem;--color:{userOptions.color};--size:{userOptions.fontSize}px;--font:{userOptions.fontFamily}"
+        class="{hiddenChecked ? 'hidden' : ''}"
+        style="--background:white;"
     >
         
         {content}
@@ -97,7 +99,6 @@
 
 
 <style>
-    
     :global(:root){
         --background: white;
         --color: black;
