@@ -1,22 +1,18 @@
 <script lang="ts">
     //@ts-nocheck
-    import { messages, count } from './stores';
+    import { messages, messagesCSS, count } from './stores';
     let strLimit: number = 20;
+
+    $: console.log($messagesCSS);
 </script>
 
-{#if $messages.length}
-    <h2> {$count} Messages</h2>
-{:else}
-    <p>No messages yet</p>
-{/if}
 
-<div class="container">
-    
+<div style="{$messagesCSS}" class="messageBox">   
 
     {#each $messages as dialog} 
     {@const short = dialog.content.length >= strLimit ? dialog.content.slice(0, 10) + '...' : dialog.content}
     
-    <div class="message">
+    <div >
         <p>Sent: {short}</p>
         <p>Received: {dialog.response}</p>
     </div>
@@ -25,16 +21,12 @@
 </div>
 
 <style>
-    div.container {
-        padding: 2rem;
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    div.message {
-        border-bottom: #ccc 1px dashed;
+    .messageBox {
+        background-color: var(--background);
+        font-size: var(--size);
+        font-family: var(--font);
+        color: var(--color);
+        padding-top: var(--pt);
+        padding-bottom: var(--pb);
     }
 </style>

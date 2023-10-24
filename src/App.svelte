@@ -1,44 +1,41 @@
 <script lang="ts">
     import Counter from "./lib/Counter.svelte";
     import MessageDisplay from "./lib/MessageDisplay.svelte";
+    import Options from "./lib/Options.svelte";
     import StatusDisplay from "./lib/StatusDisplay.svelte";
     import StatusInput from "./lib/StatusInput.svelte";
 	import UserInput from "./lib/UserInput.svelte";
+	import { messages } from "./lib/stores";
 
-	let messagesCount: number = 0;
-
-	let status: string;
+	let status: "offline" | "online" | "away" = "offline";
 </script>
 
-<StatusDisplay status={status} />
 <main>
 	<h1>SvelChat</h1>
+	<StatusDisplay status={status} />
 	<StatusInput bind:status={status} />
-	<hr/>
-	<!-- Hands-on: replace with a Store  -->
-	{#if messagesCount > 0}
-		You have {messagesCount} messages 
-	{/if}
-	<!-- Hands-on: replace with a Store  -->
-	<UserInput bind:messagesCount />
-	<hr/>
+	
+	<div class="col-span-2">
+		<Options />
+	</div>
+
+	<UserInput />
 	<MessageDisplay />
 </main>
 
 <style>
-	.logo {
-		height: 6em;
-		padding: 1.5em;
-		will-change: filter;
-		transition: filter 300ms;
+	main {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
 	}
-	.logo:hover {
-		filter: drop-shadow(0 0 2em #646cffaa);
+
+	h1 {
+		grid-column: span 2;
 	}
-	.logo.svelte:hover {
-		filter: drop-shadow(0 0 2em #ff3e00aa);
-	}
-	.read-the-docs {
-		color: #888;
+
+	.col-span-2 {
+		grid-column: span 2;
 	}
 </style>

@@ -5,3 +5,5 @@ export const count = writable(0);
 export const status = writable('offline');
 
 export const messages: Writable<Array<{content: string, response: string}>> = writable([]);
+
+export const messagesCSS: Writable<String> = writable('');
